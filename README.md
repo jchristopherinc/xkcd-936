@@ -21,12 +21,14 @@ or
 
 Use `-h` to list all Options
 
-* `-c` Count - Number of words per suggestion. Default - 4
-* `-d` Delimiter - String delimiter between words. Default \space
+* `-c` Count - Number of words per suggestion. Default - `4`
+* `-d` Delimiter - String delimiter between words. Default - `\space`
 
 ## What's working?
 
-A very basic thing which will give you XKCD Style password
+Generates XKCD Style passwords.
+
+You can configure word count, add delimiters as of now.
 
 ## To-Do
 
