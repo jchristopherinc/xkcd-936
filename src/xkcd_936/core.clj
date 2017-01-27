@@ -12,11 +12,18 @@
      :default 1
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
+    ["-d" "--delimiter Delimiter" "Delimiter"
+     :default \space]
+    ["-c" "--count Count" "Number of words per suggestion"
+     :default 4
+     :parse-fn #(Integer/parseInt %)
+     :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
     ["-min" "--minimum Minimum" "Minimum number of Characters"
      :default 4
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
     ["-max" "--maximum Maximum" "Maximum number of Characters"
+     :default 7
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
     ["-h" "--help"]
@@ -39,8 +46,8 @@
 
 (def url "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa-no-swears-short.txt")
 
-(defn password [n words]
-  (string/join \space (take n (secureShuffle words))))
+(defn password [words options]
+  (string/join (:delimiter options) (take (:count options) (secureShuffle words))))
 
 (if-not (.exists (io/file fileName))
   (spit fileName (slurp url)))
@@ -50,5 +57,5 @@
     (cond
       (:help options) (exit 0 summary)
       errors (exit 1 errors))
-    (println (password 4 (lines fileName)))
+    (println (password (lines fileName) options))
     ))
