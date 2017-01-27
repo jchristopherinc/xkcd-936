@@ -44,7 +44,7 @@
 
 (def fileName "words.txt")
 
-(def url "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa-no-swears-short.txt")
+(def url "https://github.com/jchristopherinc/xkcd-936/blob/master/words.txt")
 
 (defn password [words options]
   (string/join (:delimiter options) (take (:count options) (secureShuffle words))))
