@@ -18,11 +18,11 @@
      :default 4
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
-    ["-min" "--minimum Minimum" "Minimum number of Characters"
+    ["-l" "--lte Minimum" "Less than or Equal to x number of Characters"
      :default 4
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
-    ["-max" "--maximum Maximum" "Maximum number of Characters"
+    ["-g" "--gte Maximum" "Greater than or Equal to x number of Characters"
      :default 7
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
@@ -49,7 +49,7 @@
 (defn randomWordFromOptions [words options]
   (let [randomWord (string/join \space (take 1 (secureShuffle words)))]
     (cond
-      (and (>= (count randomWord) (:minimum options)) (<= (count randomWord) (:maximum options))) randomWord
+      (and (>= (count randomWord) (:lte options)) (<= (count randomWord) (:gte options))) randomWord
       :else (randomWordFromOptions words options)
       )))
 
