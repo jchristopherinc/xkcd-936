@@ -46,8 +46,20 @@
 
 (def url "https://raw.githubusercontent.com/jchristopherinc/xkcd-936/master/words.txt")
 
+(defn randomWordFromOptions [words options]
+  (let [randomWord (string/join \space (take 1 (secureShuffle words)))]
+    (cond
+      (and (>= (count randomWord) (:minimum options)) (<= (count randomWord) (:maximum options))) randomWord
+      :else (randomWordFromOptions words options)
+      )))
+
 (defn password [words options]
-  (string/join (:delimiter options) (take (:count options) (secureShuffle words))))
+  (let [al (ArrayList.)]
+    (loop [i 0]
+      (when (< i (:count options))
+        (.add al (randomWordFromOptions words options))
+        (recur (inc i))))
+  (string/join (:delimiter options) al)))
 
 (if-not (.exists (io/file fileName))
   (spit fileName (slurp url)))
@@ -57,5 +69,8 @@
     (cond
       (:help options) (exit 0 summary)
       errors (exit 1 errors))
-    (println (password (lines fileName) options))
-    ))
+    (let [wordList (lines fileName)]
+      (loop [i 0]
+        (when (< i (:suggestions options))
+          (println (password wordList options))
+          (recur (inc i)))))))
