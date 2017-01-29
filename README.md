@@ -21,18 +21,22 @@ or
 
 Use `-h` to list all Options
 
-* `-c` Count - Number of words per suggestion. Default - `4`
-* `-d` Delimiter - String delimiter between words. Default - `\space`
+* `-c` `--count` Count - Number of words per suggestion. Default - `4`
+* `-d` `--delimiter` Delimiter - String delimiter between words. Default - `\space`
+* `-s` `--suggestions` Number of Suggestions. Default - `1`
+* `-l` `--lte` Minimum number of Characters in a word. Default - `4`
+* `-g` `--gte` Maximum number of Characters in a word. Default - `7`
+* `-h` `--help`
 
 ## What's working?
 
 Generates XKCD Style passwords.
 
-You can configure word count, add delimiters as of now.
+You can configure word count, add delimiters as of now, specify minumum/maximum characters per word and the number of suggestions.
 
 ## To-Do
 
-- [ ] Use arguments to give different outputs like min/max word length, number of suggestions etc...
+- [x] Use arguments to give different outputs like min/max word length, number of suggestions etc...
 - [ ] acrostic outputs
 - [ ] calculate and show entropy of the passwords
 
