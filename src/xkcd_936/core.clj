@@ -29,22 +29,21 @@
     ["-h" "--help"]
   ])
 
-(defn exit [status message]
-  (println message)
-  (System/exit status))
+(def fileName "words.txt")
 
-(defn secureShuffle [col]
-  (let [al (ArrayList. col)]
-    (Collections/shuffle al (SecureRandom.))
-    (vec al)))
+(def url "https://raw.githubusercontent.com/jchristopherinc/xkcd-936/master/words.txt")
+
+(if-not (.exists (io/file fileName))
+  (spit fileName (slurp url)))
 
 (defn lines [file]
   (with-open [reader (io/reader file)]
     (doall (line-seq reader))))
 
-(def fileName "words.txt")
-
-(def url "https://raw.githubusercontent.com/jchristopherinc/xkcd-936/master/words.txt")
+(defn secureShuffle [col]
+  (let [al (ArrayList. col)]
+    (Collections/shuffle al (SecureRandom.))
+    (vec al)))
 
 (defn randomWordFromOptions [words options]
   (let [randomWord (string/join \space (take 1 (secureShuffle words)))]
@@ -61,8 +60,9 @@
         (recur (inc i))))
   (string/join (:delimiter options) al)))
 
-(if-not (.exists (io/file fileName))
-  (spit fileName (slurp url)))
+(defn exit [status message]
+  (println message)
+  (System/exit status))
 
 (defn -main [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
