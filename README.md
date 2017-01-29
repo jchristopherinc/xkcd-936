@@ -11,15 +11,13 @@ Implementing 👆in Clojure
 
 ## Usage
 
-    $ lein run
+    $ lein run [args]
 
 or
 
     $ java -jar xkcd-936-0.1.0-standalone.jar [args]
 
 ## Options
-
-Use `-h` to list all Options
 
 * `-c` `--count` Count - Number of words per suggestion. Default - `4`
 * `-d` `--delimiter` Delimiter - String delimiter between words. Default - `\space`
