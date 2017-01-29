@@ -30,7 +30,7 @@ or
 
 Generates XKCD Style passwords.
 
-You can configure word count, add delimiters as of now, specify minumum/maximum characters per word and the number of suggestions.
+You can configure word count, add delimiters, specify minumum/maximum characters per word and the number of suggestions.
 
 ## To-Do
 
