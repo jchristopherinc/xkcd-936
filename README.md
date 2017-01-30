@@ -7,7 +7,7 @@ Implementing 👆in Clojure
 ## Installation
 
 1. Clone this Repo
-2. cd `xkdd-936`
+2. cd `xkcd-936`
 
 ## Usage
 
