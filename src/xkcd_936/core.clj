@@ -26,9 +26,8 @@
      :default 7
      :parse-fn #(Integer/parseInt %)
      :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
-    ["-h" "--help"]
-  ])
-
+    ["-h" "--help"]])
+  
 (def fileName "words.txt")
 
 (def url "https://raw.githubusercontent.com/jchristopherinc/xkcd-936/master/words.txt")
@@ -49,8 +48,7 @@
   (let [randomWord (string/join \space (take 1 (secureShuffle words)))]
     (cond
       (and (>= (count randomWord) (:lte options)) (<= (count randomWord) (:gte options))) randomWord
-      :else (randomWordFromOptions words options)
-      )))
+      :else (randomWordFromOptions words options))))
 
 (defn password [words options]
   (let [al (ArrayList.)]
@@ -58,7 +56,7 @@
       (when (< i (:count options))
         (.add al (randomWordFromOptions words options))
         (recur (inc i))))
-  (string/join (:delimiter options) al)))
+   (string/join (:delimiter options) al)))
 
 (defn exit [status message]
   (println message)
