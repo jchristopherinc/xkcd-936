@@ -14,7 +14,9 @@ Implementing 👆in Clojure
     $ lein run [args]
 
 or
+
     $ lein uberjar
+    $ cd target/
     $ java -jar xkcd-936-0.1.0-standalone.jar [args]
 
 ## Options
