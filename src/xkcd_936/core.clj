@@ -46,6 +46,7 @@
 
 (defn randomWordFromOptions [words options]
   (let [randomWord (string/join \space (take 1 (secureShuffle words)))]
+    (remove randomWord words)
     (cond
       (and (>= (count randomWord) (:lte options)) (<= (count randomWord) (:gte options))) randomWord
       :else (randomWordFromOptions words options))))
@@ -66,6 +67,7 @@
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
     (cond
       (:help options) (exit 0 summary)
+      (> (:lte options) (:gte options)) (exit 0 "Minimum Characters (-l) should be greater than Maximum Characters (-g)")
       errors (exit 1 errors))
     (let [wordList (lines fileName)]
       (loop [i 0]
