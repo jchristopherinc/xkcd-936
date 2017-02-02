@@ -68,6 +68,7 @@
     (cond
       (:help options) (exit 0 summary)
       (> (:lte options) (:gte options)) (exit 0 "Minimum Characters (-l) should be greater than Maximum Characters (-g)")
+      (< (:count options) 4) (exit 0 "Word count can't be less than 4")
       errors (exit 1 errors))
     (let [wordList (lines fileName)]
       (loop [i 0]
