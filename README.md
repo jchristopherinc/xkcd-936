@@ -1,4 +1,4 @@
-# xkcd-936 [WIP]
+# xkcd-936
 
 [![xkcd-936](http://imgs.xkcd.com/comics/password_strength.png)](https://xkcd.com/936/)
 
